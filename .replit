@@ -15,5 +15,5 @@ requiredFiles = [".replit", "replit.nix"]
 channel = "stable-24_05"
 
 [deployment]
-run = ["dotnet", "run"]
+run = ["sh", "-c", "dotnet run"]
 deploymentTarget = "cloudrun"
