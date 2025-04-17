@@ -1,16 +1,45 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>835 EDI Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-10">
-        <div class="max-w-2xl mx-auto text-center">
+        <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl font-bold text-blue-600 mb-4">835 Remittance Advice Visualizer</h1>
-            <p class="text-lg text-gray-700 mb-4">A powerful application for visualizing different permutations of 835 remittance advice files and their associated business logic.</p>
-            <p class="text-md text-gray-600">Analyze and understand complex healthcare payment data with ease.</p>
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Sample 835 EDI File</h2>
+                <pre><code class="language-plaintext">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *200101*1253*^*00501*000000001*0*P*:~
+GS*HP*SENDER*RECEIVER*20200101*1253*1*X*005010X221A1~
+ST*835*0001~
+BPR*I*5000*C*ACH*CCP*01*999999999*DA*123456789*1234567890**01*999988880*DA*123456789*20200101~
+TRN*1*12345*1234567890~
+DTM*405*20200101~
+N1*PR*INSURANCE COMPANY*PI*12345~
+N1*PE*PROVIDER NAME*XX*1234567890~
+LX*1~
+CLP*ABC123*1*300*200*100*12*1234567890*11~
+NM1*QC*1*DOE*JOHN****MI*1234567890~
+DTM*232*20200101~
+SVC*HC:99213*200*100**1~
+DTM*472*20200101~
+CAS*CO*42*100~
+AMT*B6*200~
+SE*13*0001~
+GE*1*1~
+IEA*1*000000001~</code></pre>
+            </div>
+            <p class="text-md text-gray-600 text-center">Analyze and understand complex healthcare payment data with ease.</p>
         </div>
     </div>
+    <script>
+        hljs.highlightAll();
+    </script>
 </body>
 </html>
