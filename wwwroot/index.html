@@ -11,11 +11,12 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-10">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold text-blue-600 mb-4">835 Remittance Advice Visualizer</h1>
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Sample 835 EDI File</h2>
-                <pre><code class="language-plaintext">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *200101*1253*^*00501*000000001*0*P*:~
+        <h1 class="text-4xl font-bold text-blue-600 mb-8 text-center">835 Remittance Advice Visualizer</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Left side - Input -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">835 EDI Input</h2>
+                <textarea id="ediInput" class="w-full h-[600px] font-mono bg-gray-50 p-4 border rounded-lg" placeholder="Paste your 835 EDI data here...">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *200101*1253*^*00501*000000001*0*P*:~
 GS*HP*SENDER*RECEIVER*20200101*1253*1*X*005010X221A1~
 ST*835*0001~
 BPR*I*5000*C*ACH*CCP*01*999999999*DA*123456789*1234567890**01*999988880*DA*123456789*20200101~
@@ -33,9 +34,21 @@ CAS*CO*42*100~
 AMT*B6*200~
 SE*13*0001~
 GE*1*1~
-IEA*1*000000001~</code></pre>
+IEA*1*000000001~</textarea>
             </div>
-            <p class="text-md text-gray-600 text-center">Analyze and understand complex healthcare payment data with ease.</p>
+            
+            <!-- Right side - Output -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-700">JSON Output</h2>
+                    <button id="parseButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                        🔀 Parse 835
+                    </button>
+                </div>
+                <pre id="jsonOutput" class="w-full h-[600px] bg-gray-50 p-4 border rounded-lg overflow-auto"><code class="language-json">{
+    "message": "Click 'Parse 835' to convert EDI to JSON"
+}</code></pre>
+            </div>
         </div>
     </div>
     <script>
