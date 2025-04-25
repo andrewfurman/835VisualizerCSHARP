@@ -15,7 +15,7 @@ app.MapPost("/api/parse", async (HttpContext ctx) =>
 {
     using var sr = new StreamReader(ctx.Request.Body);
     var edi = await sr.ReadToEndAsync();
-    var remit = FlatFile835Parser.ParseFromString(edi);
+    var remit = X12EdiNetParser.ParseFromString(edi);   // instead of FlatFile835Parser
     await ctx.Response.WriteAsJsonAsync(remit);
 });
 

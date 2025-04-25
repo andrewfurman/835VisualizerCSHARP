@@ -1,0 +1,491 @@
+### FILE TREE (SELECTED)
+
+├─ .upm
+|  └─ store.json (2 lines)
+├─ bin
+|  └─ Debug
+|     └─ netcoreapp7.0
+|        └─ main.deps.json (41 lines)
+|        ├─ main.runtimeconfig.json (19 lines)
+|        ├─ packages.lock.json (13 lines)
+|        ├─ main.staticwebassets.runtime.json (1 lines)
+├─ obj
+|  ├─ Debug
+|  |  └─ netcoreapp7.0
+|  |     ├─ staticwebassets.build.json (37 lines)
+|  |     ├─ staticwebassets.pack.json (25 lines)
+|  |     ├─ staticwebassets.development.json (1 lines)
+|  ├─ project.assets.json (120 lines)
+|  └─ main.csproj.nuget.dgspec.json (70 lines)
+├─ wwwroot
+|  └─ index.html (87 lines)
+└─ packages.lock.json (13 lines)
+
+
+### FILE CONTENTS
+
+FILE: .upm/store.json
+----------------------------------------
+{"version":2,"languages":{"dotnet":{"specfileHash":"fc1d42be61e65af69d04c12d2b6a23fa","lockfileHash":"02708dbb91a3c10c9767054a06bea0ce"}}}
+
+
+FILE: bin/Debug/netcoreapp7.0/main.deps.json
+----------------------------------------
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "main/1.0.0": {
+        "dependencies": {
+          "indice.Edi": "1.12.0"
+        },
+        "runtime": {
+          "main.dll": {}
+        }
+      },
+      "indice.Edi/1.12.0": {
+        "runtime": {
+          "lib/net6.0/indice.Edi.dll": {
+            "assemblyVersion": "1.12.0.0",
+            "fileVersion": "1.12.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "main/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "indice.Edi/1.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XWdcwxSaMbOHIK/iB2iFECDjRKVqiIR+aSLn075LI7MJUPQP5bfvD/ZLa84d0KJD5ppZqYN34aprErI3XiQ8mg==",
+      "path": "indice.edi/1.12.0",
+      "hashPath": "indice.edi.1.12.0.nupkg.sha512"
+    }
+  }
+}
+
+FILE: bin/Debug/netcoreapp7.0/main.runtimeconfig.json
+----------------------------------------
+{
+  "runtimeOptions": {
+    "tfm": "net7.0",
+    "frameworks": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "7.0.0"
+      },
+      {
+        "name": "Microsoft.AspNetCore.App",
+        "version": "7.0.0"
+      }
+    ],
+    "configProperties": {
+      "System.GC.Server": true,
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false
+    }
+  }
+}
+
+FILE: bin/Debug/netcoreapp7.0/packages.lock.json
+----------------------------------------
+{
+  "version": 1,
+  "dependencies": {
+    "net7.0": {
+      "indice.Edi": {
+        "type": "Direct",
+        "requested": "[1.12.0, )",
+        "resolved": "1.12.0",
+        "contentHash": "XWdcwxSaMbOHIK/iB2iFECDjRKVqiIR+aSLn075LI7MJUPQP5bfvD/ZLa84d0KJD5ppZqYN34aprErI3XiQ8mg=="
+      }
+    }
+  }
+}
+
+FILE: bin/Debug/netcoreapp7.0/main.staticwebassets.runtime.json
+----------------------------------------
+{"ContentRoots":["/home/runner/workspace/wwwroot/"],"Root":{"Children":{"index.html":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"index.html"},"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+
+FILE: obj/Debug/netcoreapp7.0/staticwebassets.build.json
+----------------------------------------
+{
+  "Version": 1,
+  "Hash": "ZgMeqczaKHDKmPZPI6BzSjeG+/8B9NM5YDgdU5pks0o=",
+  "Source": "main",
+  "BasePath": "_content/main",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "main/wwwroot",
+      "Source": "main",
+      "ContentRoot": "/home/runner/workspace/wwwroot/",
+      "BasePath": "_content/main",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/runner/workspace/wwwroot/index.html",
+      "SourceId": "main",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/wwwroot/",
+      "BasePath": "_content/main",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    }
+  ]
+}
+
+FILE: obj/Debug/netcoreapp7.0/staticwebassets.pack.json
+----------------------------------------
+{
+  "Files": [
+    {
+      "Id": "/home/runner/workspace/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "obj/Debug/netcoreapp7.0/staticwebassets/msbuild.build.main.props",
+      "PackagePath": "build\\main.props"
+    },
+    {
+      "Id": "obj/Debug/netcoreapp7.0/staticwebassets/msbuild.buildMultiTargeting.main.props",
+      "PackagePath": "buildMultiTargeting\\main.props"
+    },
+    {
+      "Id": "obj/Debug/netcoreapp7.0/staticwebassets/msbuild.buildTransitive.main.props",
+      "PackagePath": "buildTransitive\\main.props"
+    },
+    {
+      "Id": "obj/Debug/netcoreapp7.0/staticwebassets/msbuild.main.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
+
+FILE: obj/Debug/netcoreapp7.0/staticwebassets.development.json
+----------------------------------------
+{"ContentRoots":["/home/runner/workspace/wwwroot/"],"Root":{"Children":{"index.html":{"Children":null,"Asset":{"ContentRootIndex":0,"SubPath":"index.html"},"Patterns":null}},"Asset":null,"Patterns":[{"ContentRootIndex":0,"Pattern":"**","Depth":0}]}}
+
+FILE: obj/project.assets.json
+----------------------------------------
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "indice.Edi/1.12.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/indice.Edi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/indice.Edi.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "indice.Edi/1.12.0": {
+      "sha512": "XWdcwxSaMbOHIK/iB2iFECDjRKVqiIR+aSLn075LI7MJUPQP5bfvD/ZLa84d0KJD5ppZqYN34aprErI3XiQ8mg==",
+      "type": "package",
+      "path": "indice.edi/1.12.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon-256.png",
+        "indice.edi.1.12.0.nupkg.sha512",
+        "indice.edi.nuspec",
+        "lib/net451/indice.Edi.dll",
+        "lib/net451/indice.Edi.pdb",
+        "lib/net451/indice.Edi.xml",
+        "lib/net6.0/indice.Edi.dll",
+        "lib/net6.0/indice.Edi.pdb",
+        "lib/net6.0/indice.Edi.xml",
+        "lib/netstandard1.0/indice.Edi.dll",
+        "lib/netstandard1.0/indice.Edi.pdb",
+        "lib/netstandard1.0/indice.Edi.xml",
+        "lib/netstandard1.3/indice.Edi.dll",
+        "lib/netstandard1.3/indice.Edi.pdb",
+        "lib/netstandard1.3/indice.Edi.xml",
+        "lib/netstandard2.0/indice.Edi.dll",
+        "lib/netstandard2.0/indice.Edi.pdb",
+        "lib/netstandard2.0/indice.Edi.xml"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "indice.Edi >= 1.12.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/runner/workspace/.cache/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/runner/workspace/main.csproj",
+      "projectName": "main",
+      "projectPath": "/home/runner/workspace/main.csproj",
+      "packagesPath": "/home/runner/workspace/.cache/.nuget/packages/",
+      "outputPath": "/home/runner/workspace/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/runner/workspace/.cache/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "netcoreapp7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "netcoreapp7.0",
+        "dependencies": {
+          "indice.Edi": {
+            "target": "Package",
+            "version": "[1.12.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/nix/store/4k08ckhym1bcwnsk52j201a80l2xrkhp-dotnet-sdk-7.0.410/sdk/7.0.410/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
+
+FILE: obj/main.csproj.nuget.dgspec.json
+----------------------------------------
+{
+  "format": 1,
+  "restore": {
+    "/home/runner/workspace/main.csproj": {}
+  },
+  "projects": {
+    "/home/runner/workspace/main.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/workspace/main.csproj",
+        "projectName": "main",
+        "projectPath": "/home/runner/workspace/main.csproj",
+        "packagesPath": "/home/runner/workspace/.cache/.nuget/packages/",
+        "outputPath": "/home/runner/workspace/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/workspace/.cache/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "netcoreapp7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "netcoreapp7.0",
+          "dependencies": {
+            "indice.Edi": {
+              "target": "Package",
+              "version": "[1.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/nix/store/4k08ckhym1bcwnsk52j201a80l2xrkhp-dotnet-sdk-7.0.410/sdk/7.0.410/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
+
+FILE: wwwroot/index.html
+----------------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>835 EDI Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-900 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <h1 class="text-3xl font-bold text-white">835 Remitance Advice - Parser & Generator</h1>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Left side - Input -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">835 EDI Input</h2>
+                <textarea id="ediInput" class="w-full h-[600px] font-mono bg-gray-50 p-4 border rounded-lg" placeholder="Paste your 835 EDI data here...">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *200101*1253*^*00501*000000001*0*P*:~
+GS*HP*SENDER*RECEIVER*20200101*1253*1*X*005010X221A1~
+ST*835*0001~
+BPR*I*5000*C*ACH*CCP*01*999999999*DA*123456789*1234567890**01*999988880*DA*123456789*20200101~
+TRN*1*12345*1234567890~
+DTM*405*20200101~
+N1*PR*INSURANCE COMPANY*PI*12345~
+N1*PE*PROVIDER NAME*XX*1234567890~
+LX*1~
+CLP*ABC123*1*300*200*100*12*1234567890*11~
+NM1*QC*1*DOE*JOHN****MI*1234567890~
+DTM*232*20200101~
+SVC*HC:99213*200*100**1~
+DTM*472*20200101~
+CAS*CO*42*100~
+AMT*B6*200~
+SE*13*0001~
+GE*1*1~
+IEA*1*000000001~</textarea>
+            </div>
+            
+            <!-- Right side - Output -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-700">JSON Output</h2>
+                    <button id="parseButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                        🔀 Parse 835
+                    </button>
+                </div>
+                <pre id="jsonOutput" class="w-full h-[600px] bg-gray-50 p-4 border rounded-lg overflow-auto"><code class="language-json">{
+    "message": "Click 'Parse 835' to convert EDI to JSON"
+}</code></pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        hljs.highlightAll();
+        
+        document.getElementById('parseButton').addEventListener('click', async () => {
+            const ediInput = document.getElementById('ediInput').value;
+            const jsonOutput = document.getElementById('jsonOutput');
+            
+            try {
+                const response = await fetch('/api/parse', {
+                    method: 'POST',
+                    body: ediInput,
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                });
+                
+                const result = await response.json();
+                jsonOutput.innerHTML = '<code class="language-json">' + 
+                    JSON.stringify(result, null, 2) + '</code>';
+                hljs.highlightElement(jsonOutput.querySelector('code'));
+            } catch (error) {
+                jsonOutput.innerHTML = '<code class="language-json">' + 
+                    JSON.stringify({ error: error.message }, null, 2) + '</code>';
+                hljs.highlightElement(jsonOutput.querySelector('code'));
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+FILE: packages.lock.json
+----------------------------------------
+{
+  "version": 1,
+  "dependencies": {
+    "net7.0": {
+      "indice.Edi": {
+        "type": "Direct",
+        "requested": "[1.12.0, )",
+        "resolved": "1.12.0",
+        "contentHash": "XWdcwxSaMbOHIK/iB2iFECDjRKVqiIR+aSLn075LI7MJUPQP5bfvD/ZLa84d0KJD5ppZqYN34aprErI3XiQ8mg=="
+      }
+    }
+  }
+}
+
