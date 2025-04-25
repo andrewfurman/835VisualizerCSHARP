@@ -11,7 +11,7 @@ public static class X12EdiNetParser
     public static CanonicalRemit ParseFromString(string edi)
     {
         var grammar = EdiGrammar.NewX12();
-        using var reader = new EdiStringReader(edi, grammar);
+        using var reader = new EdiReader(new StringReader(edi), grammar);
         
         var segments = reader.ReadAllSegments().ToList();
         

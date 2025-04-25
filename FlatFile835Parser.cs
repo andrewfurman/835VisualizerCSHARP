@@ -20,6 +20,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Models;
 
+#nullable enable
 public static class FlatFile835Parser
 {
     public static CanonicalRemit ParseFromString(string edi)
