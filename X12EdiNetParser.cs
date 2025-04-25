@@ -11,9 +11,9 @@ public static class X12EdiNetParser
     public static CanonicalRemit ParseFromString(string edi)
     {
         var grammar = EdiGrammar.NewX12();
-        var reader = new EdiReader(edi, grammar);
+        using var reader = new EdiStringReader(edi, grammar);
         
-        var segments = reader.ReadToEnd().ToList();
+        var segments = reader.ReadAllSegments().ToList();
         
         var payerName = segments
             .Where(s => s.Name == "N1" && s.Values[1].Contains("INSURANCE"))

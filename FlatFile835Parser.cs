@@ -14,6 +14,10 @@
 // public static CanonicalRemit Parse(string path);
 // Throws a clear error if the first non-empty line doesn’t begin with "H*" (so you know you fed it the wrong format).
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using Models;
 
 public static class FlatFile835Parser
@@ -57,8 +61,11 @@ public static class FlatFile835Parser
                         Charge:        decimal.Parse(parts.Last()),
                         Paid:          decimal.Parse(parts[9])); // MDP or SR1
                     current.Lines.Add(svc);
-                    current.TotalPaid += svc.Paid;
-                    current.TotalCharge += svc.Charge;
+                    current = current with 
+                    { 
+                        TotalPaid = current.TotalPaid + svc.Paid,
+                        TotalCharge = current.TotalCharge + svc.Charge
+                    };
                     break;
             }
         }
