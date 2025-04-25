@@ -47,7 +47,8 @@ IEA*1*000000001~</textarea>
                     <h2 class="text-2xl font-semibold text-gray-700">JSON Output</h2>
                     <button id="parseButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
                         🔀 Parse 835
-                    </button>
+                </button>
+                <div id="status" class="text-sm text-gray-500"></div>
                 </div>
                 <pre id="jsonOutput" class="w-full h-[600px] bg-gray-50 p-4 border rounded-lg overflow-auto"><code class="language-json">{
     "message": "Click 'Parse 835' to convert EDI to JSON"
@@ -59,6 +60,20 @@ IEA*1*000000001~</textarea>
         hljs.highlightAll();
         
         document.getElementById('parseButton').addEventListener('click', async () => {
+            const button = document.getElementById('parseButton');
+            const status = document.getElementById('status');
+            const jsonOutput = document.getElementById('jsonOutput');
+            
+            // Disable button and show loading state
+            button.disabled = true;
+            button.classList.add('opacity-50');
+            status.textContent = 'Parsing...';
+            
+            try {
+                const ediInput = document.getElementById('ediInput').value;
+                if (!ediInput.trim()) {
+                    throw new Error('Please enter EDI data first');
+                }
             const ediInput = document.getElementById('ediInput').value;
             const jsonOutput = document.getElementById('jsonOutput');
             
@@ -71,14 +86,27 @@ IEA*1*000000001~</textarea>
                     }
                 });
                 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const result = await response.json();
                 jsonOutput.innerHTML = '<code class="language-json">' + 
                     JSON.stringify(result, null, 2) + '</code>';
+                status.textContent = 'Parsing complete';
+                status.classList.remove('text-red-500');
+                status.classList.add('text-green-500');
                 hljs.highlightElement(jsonOutput.querySelector('code'));
             } catch (error) {
+                status.textContent = `Error: ${error.message}`;
+                status.classList.remove('text-green-500');
+                status.classList.add('text-red-500');
                 jsonOutput.innerHTML = '<code class="language-json">' + 
                     JSON.stringify({ error: error.message }, null, 2) + '</code>';
                 hljs.highlightElement(jsonOutput.querySelector('code'));
+            } finally {
+                // Re-enable button
+                button.disabled = false;
+                button.classList.remove('opacity-50');
             }
         });
     </script>
