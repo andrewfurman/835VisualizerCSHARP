@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using indice.Edi;
 using indice.Edi.Serialization;
+using indice.Edi.Tokens;
 using Models;
 
 public static class X12EdiNetParser
@@ -19,7 +20,7 @@ public static class X12EdiNetParser
             var parser = new EdiParser(reader, grammar);
             while (parser.Read())
             {
-                if (parser.TokenType == EdiToken.Segment)
+                if (parser.TokenType == EdiToken.SegmentName)
                 {
                     segments.Add(parser.Segment);
                 }
