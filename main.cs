@@ -9,4 +9,13 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
+app.MapPost("/api/parse", async (HttpContext ctx) =>
+{
+    using var sr = new StreamReader(ctx.Request.Body);
+    var edi = await sr.ReadToEndAsync();
+    var remit = FlatFile835Parser.ParseFromString(edi);
+    await ctx.Response.WriteAsJsonAsync(remit);
+});
+
+
 app.Run("http://0.0.0.0:5000");
