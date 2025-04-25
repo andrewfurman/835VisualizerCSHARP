@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using indice.Edi;
+using indice.Edi.Serialization;
 using Models;
 
 public static class X12EdiNetParser
@@ -11,9 +12,19 @@ public static class X12EdiNetParser
     public static CanonicalRemit ParseFromString(string edi)
     {
         var grammar = EdiGrammar.NewX12();
-        using var reader = new EdiReader(new StringReader(edi), grammar);
+        var segments = new List<EdiSegment>();
         
-        var segments = reader.ReadAllSegments().ToList();
+        using (var reader = new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(edi))))
+        {
+            var parser = new EdiParser(reader, grammar);
+            while (parser.Read())
+            {
+                if (parser.TokenType == EdiToken.Segment)
+                {
+                    segments.Add(parser.Segment);
+                }
+            }
+        }
         
         var payerName = segments
             .Where(s => s.Name == "N1" && s.Values[1].Contains("INSURANCE"))
