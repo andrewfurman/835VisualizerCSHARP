@@ -74,8 +74,14 @@ IEA*1*000000001~</textarea>
                 if (!ediInput.trim()) {
                     throw new Error('Please enter EDI data first');
                 }
-            const ediInput = document.getElementById('ediInput').value;
-            const jsonOutput = document.getElementById('jsonOutput');
+
+                const response = await fetch('/api/parse', {
+                    method: 'POST',
+                    body: ediInput,
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                });
             
             try {
                 const response = await fetch('/api/parse', {
