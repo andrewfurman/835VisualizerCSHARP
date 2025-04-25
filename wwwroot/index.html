@@ -57,6 +57,30 @@ IEA*1*000000001~</textarea>
     </div>
     <script>
         hljs.highlightAll();
+        
+        document.getElementById('parseButton').addEventListener('click', async () => {
+            const ediInput = document.getElementById('ediInput').value;
+            const jsonOutput = document.getElementById('jsonOutput');
+            
+            try {
+                const response = await fetch('/api/parse', {
+                    method: 'POST',
+                    body: ediInput,
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                });
+                
+                const result = await response.json();
+                jsonOutput.innerHTML = '<code class="language-json">' + 
+                    JSON.stringify(result, null, 2) + '</code>';
+                hljs.highlightElement(jsonOutput.querySelector('code'));
+            } catch (error) {
+                jsonOutput.innerHTML = '<code class="language-json">' + 
+                    JSON.stringify({ error: error.message }, null, 2) + '</code>';
+                hljs.highlightElement(jsonOutput.querySelector('code'));
+            }
+        });
     </script>
 </body>
 </html>
