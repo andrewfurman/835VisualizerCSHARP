@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +16,9 @@
     </header>
     <div class="container mx-auto px-4 py-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Left side - Input -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4">835 EDI Input</h2>
-                <textarea id="ediInput" class="w-full h-[600px] font-mono bg-gray-50 p-4 border rounded-lg" placeholder="Paste your 835 EDI data here...">ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *200101*1253*^*00501*000000001*0*P*:~
+                <textarea id="ediInput" class="w-full h-[600px] font-mono bg-gray-50 p-4 border rounded-lg" placeholder="Paste your 835 EDI data here...">ISA*00* *00* *ZZ*SENDER        *ZZ*RECEIVER      *200101*1253*^*00501*000000001*0*P*:~
 GS*HP*SENDER*RECEIVER*20200101*1253*1*X*005010X221A1~
 ST*835*0001~
 BPR*I*5000*C*ACH*CCP*01*999999999*DA*123456789*1234567890**01*999988880*DA*123456789*20200101~
@@ -40,14 +38,13 @@ SE*13*0001~
 GE*1*1~
 IEA*1*000000001~</textarea>
             </div>
-            
-            <!-- Right side - Output -->
+
             <div class="bg-white rounded-lg shadow-md p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-2xl font-semibold text-gray-700">JSON Output</h2>
                     <button id="parseButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
                         🔀 Parse 835
-                </button>
+                    </button>
                 <div id="status" class="text-sm text-gray-500"></div>
                 </div>
                 <pre id="jsonOutput" class="w-full h-[600px] bg-gray-50 p-4 border rounded-lg overflow-auto"><code class="language-json">{
@@ -56,65 +53,128 @@ IEA*1*000000001~</textarea>
             </div>
         </div>
     </div>
+
     <script>
-        hljs.highlightAll();
-        
-        document.getElementById('parseButton').addEventListener('click', async () => {
-            const button = document.getElementById('parseButton');
+        console.log("DEBUG: index.html script block started execution."); 
+
+        // Wait for the DOM to be fully loaded before trying to access elements
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log("DEBUG: DOM fully loaded and parsed."); 
+
+            // Get references to elements needed later (safer to get them once DOM is ready)
+            const parseButton = document.getElementById('parseButton');
             const status = document.getElementById('status');
             const jsonOutput = document.getElementById('jsonOutput');
-            
-            // Disable button and show loading state
-            button.disabled = true;
-            button.classList.add('opacity-50');
-            status.textContent = 'Parsing...';
-            
-            try {
-                const ediInput = document.getElementById('ediInput').value;
-                if (!ediInput.trim()) {
-                    throw new Error('Please enter EDI data first');
-                }
+            const ediInput = document.getElementById('ediInput'); // Get ediInput reference here too
 
-                const response = await fetch('/api/parse', {
-                    method: 'POST',
-                    body: ediInput,
-                    headers: {
-                        'Content-Type': 'text/plain'
+            if (parseButton && status && jsonOutput && ediInput) { // Check all elements exist
+                 console.log("DEBUG: Found all required page elements (button, status, jsonOutput, ediInput)."); 
+
+                 // Attach the actual async event listener for parsing
+                 parseButton.addEventListener('click', async () => { 
+                    console.log("Parse 835 button clicked (async handler)."); // <<< DEBUGGING
+
+                    // Disable button and show loading state
+                    parseButton.disabled = true;
+                    parseButton.classList.add('opacity-50');
+                    status.textContent = 'Parsing...';
+                    status.classList.remove('text-red-500', 'text-green-500'); // Reset status color
+
+                    try {
+                        const ediText = ediInput.value; // Use the reference obtained earlier
+                        console.log("Read EDI Input:", ediText.substring(0, 100) + "..."); // <<< DEBUGGING
+
+                        if (!ediText.trim()) {
+                            console.error("EDI input is empty."); // <<< DEBUGGING
+                            throw new Error('Please enter EDI data first');
+                        }
+
+                        console.log("Sending fetch request to /api/parse"); // <<< DEBUGGING
+                        const response = await fetch('/api/parse', {
+                            method: 'POST',
+                            body: ediText, // Send the text content
+                            headers: {
+                                'Content-Type': 'text/plain' // Correct content type for raw text
+                            }
+                        });
+
+                        console.log("Received response from server:", response); // <<< DEBUGGING
+
+                        if (!response.ok) {
+                            // Try to get more detailed error from response body
+                            let errorDetails = `HTTP error! status: ${response.status} - ${response.statusText}`;
+                            try {
+                                 const errorData = await response.json(); // See if server sent JSON error
+                                 console.error("Server returned error object:", errorData); // <<< DEBUGGING
+                                 errorDetails += ` - ${errorData.error || ''} ${errorData.details || ''}`;
+                            } catch (e) {
+                                 const errorText = await response.text(); // Otherwise get raw text
+                                 console.error("Server returned non-JSON error text:", errorText); // <<< DEBUGGING
+                                  errorDetails += ` Response: ${errorText}`;
+                            }
+                            throw new Error(errorDetails);
+                        }
+
+                        console.log("Response is OK. Parsing JSON..."); // <<< DEBUGGING
+                        const result = await response.json();
+                        console.log("Parsed JSON result:", result); // <<< DEBUGGING
+
+                        // Display JSON result using innerHTML with a <code> tag for highlight.js
+                        const codeElement = jsonOutput.querySelector('code'); // Get the code element
+                        if(codeElement) {
+                            codeElement.textContent = JSON.stringify(result, null, 2); // Update text content
+                             hljs.highlightElement(codeElement); // Re-highlight the updated element
+                        } else {
+                             // Fallback if code tag wasn't found (shouldn't happen with current HTML)
+                            jsonOutput.innerHTML = '<code class="language-json">' + 
+                                JSON.stringify(result, null, 2) + '</code>';
+                             hljs.highlightElement(jsonOutput.querySelector('code'));
+                        }
+
+                        status.textContent = 'Parsing complete';
+                        status.classList.remove('text-red-500');
+                        status.classList.add('text-green-500');
+
+                    } catch (error) {
+                        console.error("Error during parsing process:", error); // <<< DEBUGGING
+                        status.textContent = `Error: ${error.message}`;
+                        status.classList.remove('text-green-500');
+                        status.classList.add('text-red-500');
+
+                        // Display error in JSON Output area
+                        const codeElement = jsonOutput.querySelector('code'); // Get the code element
+                         if(codeElement) {
+                             codeElement.textContent = JSON.stringify({ error: error.message, stack: error.stack }, null, 2); // Show error details
+                             hljs.highlightElement(codeElement); // Re-highlight
+                         } else {
+                            jsonOutput.innerHTML = '<code class="language-json">' + 
+                                JSON.stringify({ error: error.message, stack: error.stack }, null, 2) + '</code>'; 
+                             hljs.highlightElement(jsonOutput.querySelector('code'));
+                         }
+
+                    } finally {
+                        console.log("Re-enabling button."); // <<< DEBUGGING
+                        // Re-enable button regardless of success or failure
+                        parseButton.disabled = false;
+                        parseButton.classList.remove('opacity-50');
                     }
-                });
-            
-            try {
-                const response = await fetch('/api/parse', {
-                    method: 'POST',
-                    body: ediInput,
-                    headers: {
-                        'Content-Type': 'text/plain'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const result = await response.json();
-                jsonOutput.innerHTML = '<code class="language-json">' + 
-                    JSON.stringify(result, null, 2) + '</code>';
-                status.textContent = 'Parsing complete';
-                status.classList.remove('text-red-500');
-                status.classList.add('text-green-500');
-                hljs.highlightElement(jsonOutput.querySelector('code'));
-            } catch (error) {
-                status.textContent = `Error: ${error.message}`;
-                status.classList.remove('text-green-500');
-                status.classList.add('text-red-500');
-                jsonOutput.innerHTML = '<code class="language-json">' + 
-                    JSON.stringify({ error: error.message }, null, 2) + '</code>';
-                hljs.highlightElement(jsonOutput.querySelector('code'));
-            } finally {
-                // Re-enable button
-                button.disabled = false;
-                button.classList.remove('opacity-50');
+                }); // End of async click listener
+
+                 console.log("DEBUG: Async click event listener attached to parseButton."); 
+
+            } else {
+                 console.error("ERROR: Could not find one or more required page elements (parseButton, status, jsonOutput, ediInput)."); 
             }
-        });
+
+            // Initial highlighting of any pre-existing code blocks (like the initial message)
+            // Moved hljs.highlightAll() outside the specific button logic,
+            // as it should run once when the page loads to style initial content.
+            console.log("DEBUG: Performing initial highlight.js scan.");
+             hljs.highlightAll(); 
+
+        }); // <<< END OF DOMContentLoaded listener
+
     </script>
+    
 </body>
 </html>
