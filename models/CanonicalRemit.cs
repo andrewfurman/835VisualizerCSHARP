@@ -4,6 +4,7 @@
 
 // Keeps business data separate from parsing logic so you can reuse it when you add the X12 parser later.
 
+using System.Collections.Generic;
 namespace Models;
 
 public record ServiceLine(

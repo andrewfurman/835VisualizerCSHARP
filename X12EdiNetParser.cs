@@ -2,8 +2,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using indice.Edi;
-using indice.Edi.Definitions;
 using Models;
 
 public static class X12EdiNetParser
